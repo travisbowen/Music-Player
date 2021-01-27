@@ -42,6 +42,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 
 	//Song time slider
 	const dragInputHandler = (event) => {
+		audioRef.current.currentTime = event.target.value;
 		setSongInfo({ ...songInfo, currentTime: event.target.value });
 	};
 
