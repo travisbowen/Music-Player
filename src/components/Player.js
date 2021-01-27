@@ -7,12 +7,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
+	//State
 	const audioRef = useRef(null);
 	const [songInfo, setSongInfo] = useState({
 		currentTime: null,
 		duration: null,
 	});
 
+	// Play song
 	const playSong = () => {
 		if (isPlaying) {
 			audioRef.current.pause();
@@ -22,6 +24,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 		setIsPlaying(!isPlaying);
 	};
 
+	//Update song time info for player
 	const timeUpdate = (event) => {
 		setSongInfo({
 			...songInfo,
@@ -30,10 +33,16 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 		});
 	};
 
+	//Format time for song
 	const formatTime = (time) => {
 		return (
 			Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
 		);
+	};
+
+	//Song time slider
+	const dragInputHandler = (event) => {
+		setSongInfo({ ...songInfo, currentTime: event.target.value });
 	};
 
 	return (
@@ -44,6 +53,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 					min={0}
 					max={songInfo.duration}
 					value={songInfo.currentTime}
+					onChange={dragInputHandler}
 					type='range'
 				/>
 				<p>{formatTime(songInfo.duration)}</p>
