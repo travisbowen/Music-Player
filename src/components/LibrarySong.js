@@ -1,8 +1,10 @@
 import React from "react";
 
-const LibrarySong = ({ song, songs, setCurrentSong, songId }) => {
+const LibrarySong = ({ song, songs, setCurrentSong }) => {
 	const songSelectHandler = () => {
-		const selectedSong = songs.filter((s) => s.id === songId);
+		const selectedSong = songs.filter(
+			(filteredSong) => filteredSong.id === song.id,
+		);
 		setCurrentSong(selectedSong[0]);
 	};
 

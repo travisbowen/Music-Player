@@ -12,7 +12,6 @@ const Library = ({ songs, setCurrentSong }) => {
 							song={song}
 							songs={songs}
 							setCurrentSong={setCurrentSong}
-							songId={song.id}
 							key={song.id}
 						/>
 					);
