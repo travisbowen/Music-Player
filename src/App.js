@@ -41,6 +41,7 @@ const App = () => {
 				songs={songs}
 				setCurrentSong={setCurrentSong}
 				isPlaying={isPlaying}
+				setSongs={setSongs}
 			/>
 			<audio
 				onTimeUpdate={timeUpdate}
