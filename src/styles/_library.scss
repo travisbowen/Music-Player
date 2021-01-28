@@ -4,9 +4,10 @@
 	left: 0;
 	width: 20rem;
 	height: 100%;
-	background: lightcyan;
 	box-shadow: 2px 2px 50px rgb(204, 204, 204);
 	overflow: scroll;
+	transform: translate(-100%);
+	transition: all 0.5s ease;
 	h2 {
 		padding: 2rem;
 	}
@@ -55,5 +56,9 @@
 }
 
 .selected {
-	background: violet;
+	background: rgb(127, 175, 238);
+}
+
+.active__library {
+	transform: translate(0%);
 }
