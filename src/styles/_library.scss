@@ -1,5 +1,6 @@
 .library {
 	position: fixed;
+	background: white;
 	top: 0;
 	left: 0;
 	width: 20rem;
@@ -22,7 +23,7 @@
 		width: 30%;
 	}
 	&:hover {
-		background: rgb(127, 175, 238);
+		background: rgb(207, 228, 255);
 	}
 }
 
@@ -61,4 +62,10 @@
 
 .active__library {
 	transform: translate(0%);
+}
+
+@media screen and (max-width: 768px) {
+	.library {
+		width: 100%;
+	}
 }
