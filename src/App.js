@@ -27,6 +27,15 @@ const App = () => {
 		});
 	};
 
+	const songEndHandler = async () => {
+		// Gets index of current playing song in song array
+		let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+		await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+		if (isPlaying) {
+			audioRef.current.play();
+		}
+	};
+
 	return (
 		<div className='App'>
 			<Nav libraryOpen={libraryOpen} setLibraryOpen={setLibraryOpen} />
@@ -55,6 +64,7 @@ const App = () => {
 				onLoadedMetadata={timeUpdate}
 				ref={audioRef}
 				src={currentSong.audio}
+				onEnded={songEndHandler}
 			/>
 		</div>
 	);

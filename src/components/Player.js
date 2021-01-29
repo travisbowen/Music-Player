@@ -6,7 +6,6 @@ import {
 	faAngleRight,
 	faPause,
 } from "@fortawesome/free-solid-svg-icons";
-import { playAudio } from "../util";
 
 const Player = ({
 	audioRef,
@@ -55,23 +54,28 @@ const Player = ({
 	};
 
 	// Skip track button handlers
-	const skipTrackHandler = (direction) => {
+	const skipTrackHandler = async (direction) => {
 		// Gets index of current playing song in song array
 		let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
 
 		if (direction === "forward") {
 			// If longer than song array remainder is 0 and starts over
-			setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+			await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
 		} else if (direction === "back") {
 			// Checks if song array remainder is -1
 			if ((currentIndex - 1) % songs.length === -1) {
-				setCurrentSong(songs[songs.length - 1]);
-				return playAudio(isPlaying, audioRef);
+				await setCurrentSong(songs[songs.length - 1]);
+				if (isPlaying) {
+					audioRef.current.play();
+				}
+				return;
 			}
 			// Goes back as long as array does not equal -1
-			setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+			await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
 		}
-		playAudio(isPlaying, audioRef);
+		if (isPlaying) {
+			audioRef.current.play();
+		}
 	};
 
 	return (
